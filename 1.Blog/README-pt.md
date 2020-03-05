@@ -1,1 +1,3 @@
 # Escreva uma publicação para um blog de Ciência de Dados
+
+Para este projeto, estarei usando o dataset utilizado no meu [projeto Capstone](https://github.com/davidsondefaria/Capstone) do curso de Engenharia de Dados da Udacity. Tal dataset é composto por dados demográficos e educacionais brasileiros. Neste curso, utilizei os conhecimentos adquiridos para realizar o processo ETL para o dataset. Agora, iniciando o curso de Ciência de Dados, irei realizar algumas análises sobre o dataset.
