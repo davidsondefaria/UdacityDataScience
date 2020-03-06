@@ -72,7 +72,7 @@ def process_cities_data(brazil_df, input_format='csv', **options):
                                          })
     return brazil_df
 
-def treatEnem(enem_2018_path = os.getcwd() + '/data/enem2018/enem_2018.csv'):
+def treatEnem(enem_2018_path = os.getcwd() + '/data/original/enem_2018.csv'):
     enem2018_df = pd.read_csv(enem_2018_path, delimiter=";")
     enem2018_df.fillna(0, inplace=True)
 
@@ -87,7 +87,7 @@ def treatEnem(enem_2018_path = os.getcwd() + '/data/enem2018/enem_2018.csv'):
 
     print('ENEM process has been finalized')
     
-def treatCities(brazil_cities_path = os.getcwd() + '/data/brazil_cities.csv'):
+def treatCities(brazil_cities_path = os.getcwd() + '/data/original/brazil_cities.csv'):
     brazil_df = pd.read_csv(brazil_cities_path, delimiter=";")
     brazil_df.fillna(0, inplace=True)
 
