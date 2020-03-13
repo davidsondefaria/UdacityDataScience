@@ -25,8 +25,9 @@ def meanTestFiltered(test):
            , 'max': max(grades)
            })
         
-
-def avgGrade(enem, onlyPresent=True):
+def avgGrade(enem, onlyPresent=True
+            ,columns=['grade_natural_science', 'grade_human_science', 'grade_languages', 'grade_math', 'grade_essay']
+            ):
     """
         Returns average grade of each test.
         Parameters:
@@ -35,7 +36,15 @@ def avgGrade(enem, onlyPresent=True):
         Returns:
             dictionary with test content and their respective averages, min e max grades.
     """
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
     if onlyPresent:
+        fig = plt.figure()
+        for i in range(len(columns)):
+            ax = fig.add_subplot(2,3,i+1)
+            enem.replace(0, np.NaN).plot.kde(y=columns[i], ax=ax, figsize=(20,15))
+            
         return { 'natural_science': { 'presence': enem['presence_natural_science'].sum()
                                      ,'mean': enem.replace(0, np.NaN)['grade_natural_science'].mean()
                                      ,'min': enem.replace(0, np.NaN)['grade_natural_science'].min()
@@ -63,6 +72,10 @@ def avgGrade(enem, onlyPresent=True):
                           }
                }
     else:
+        fig = plt.figure()
+        for i in range(len(columns)):
+            ax = fig.add_subplot(2,3,i+1)
+            enem.plot.kde(y=columns[i], ax=ax, figsize=(20,15))
         return { 'natural_science': { 'mean': enem['grade_natural_science'].mean()
                                      ,'min': enem['grade_natural_science'].min()
                                      ,'max': enem['grade_natural_science'].max()
@@ -84,10 +97,11 @@ def avgGrade(enem, onlyPresent=True):
                            ,'max': enem['grade_essay'].max()
                           }
                }
-        
+
 def gradeHDIRelation( enem, cities, onlyPresent=True
                      ,lines=['hdi', 'hdi_gni', 'hdi_life', 'hdi_education']
                      ,columns=['grade_natural_science', 'grade_human_science', 'grade_languages', 'grade_math', 'grade_essay']
+                     ,fit=True
                     ):
     """
         Relates the average scores for each test to the cities' HDI, makes a graph and returns the dataset with the average scores for each city.
